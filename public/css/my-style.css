@@ -1,0 +1,135 @@
+/*My style
+Developer Harendar singh tomar
+*/
+.col-md-2{
+	padding-left:0px !important;
+}
+/*.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+	font-size: 0.8em !important;
+}*/
+.hd{
+	width:60%; 
+	float:left;
+}
+.adddnewdiv{
+	width:30%; 
+	float:right;
+}
+.adddnewp{
+	text-align:right;
+	padding:2%;
+}
+.mandatory{
+	color: red;
+}
+.error{
+	/*background: white !important;*/
+	color:red !important;
+	margin-top :0px !important;
+}
+.small-width18{
+	width:20%;
+}
+.notbold{
+	font-weight: normal;
+}
+/*.row{
+	max-width: 100% !important;
+}*/
+#annual_house_hold_income{
+	width:30%;
+}
+#replacement_month{
+	width:7%;
+}
+.table input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea {
+   /* margin: 10px 0px !important;*/
+}
+.placementradiotext{
+	width:30% !important; 
+}
+#servicetable tbody tr td{
+	 vertical-align: bottom;
+}
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+label
+{
+	cursor:default;
+}
+select
+{
+	cursor:pointer;
+}
+.checkbox-inline, .radio-inline {
+padding-left: 0px ;
+}
+.checkbox-inline, .radio-inline + .radio-inline {
+	margin-left: 0px ;
+}
+/*.text_wrap
+{
+	padding-left:0px !important;
+}*/
+.row_width
+{
+	max-width: 75.5rem;
+}
+html, body
+{
+font-size:90% !important;
+}
+table tr th, table tr td
+{
+	font-size:12px !important;
+}
+.pagination > li > a, .pagination > li > span {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    color: #337ab7;
+    float: left;
+    line-height: 0.75;
+    margin-left: -1px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+}
+#employer_day {
+    font-size: 13px !important;
+}
+/*Remove background from forms*/
+#tabs {
+    background: #fff none repeat scroll 0 0 !important;
+    border: 1px solid #aaa !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+}
+#tabs .ui-widget-content {
+    background: #fff none repeat scroll 0 0 !important;
+    border-radius: 0 !important;
+}
+#image {
+    position: relative;
+    float:right; 
+    padding:5px;
+}
+#image a {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.agreementdiv form input[type="text"]{
+    display: inline;
+    width: auto;
+}
+.agreementdiv form select {
+    width: auto !important;
+}

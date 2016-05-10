@@ -1,0 +1,658 @@
+@extends('sentinel.layouts.default')
+@section('content')
+<script type="text/javascript">
+    $(function () {
+  $('.date_of_birth').datetimepicker({
+     format: 'YYYY-MM-DD'
+  });
+  if($('#allergies_check').is(':checked')) {
+    $('#allergies_text').show();
+    } else {  
+      $('#allergies_text').hide();
+    }
+    if($('#die_restrictions_check').is(':checked')) {
+    $('#die_restrictions').show();
+    } else {  
+      $('#die_restrictions').hide();
+    }
+    if($('#phy_disabilities_check').is(':checked')) {
+    $('#phy_disabilities').show();
+    } else {  
+      $('#phy_disabilities').hide();
+    }
+    if($('#food_handling_check').is(':checked')) {
+    $('#food_handling').show();
+    } else {  
+      $('#food_handling').hide();
+    }
+    if($('#med_desieses_other').is(':checked')) {
+    $('#med_desieses').show();
+    } else {  
+      $('#med_desieses').hide();
+    }
+    $( "#tabs" ).tabs();
+
+    $( "#no_of_children" ).on('change',function () {
+      //alert();
+      var countchild = $( "#no_of_children option:selected" ).val();
+      var str ='';
+      for(var i = 0; i < countchild; i++){
+      str +='<div class="row"><div class="small-2 columns"><label for="Children age">Children age '+ (i+1) +' :</label></div><div class="col-xs-5">{!! Form::text("children_age[]", null, ["class"=> "form-control"]) !!}</div></div>';
+      }
+      $("#appendchildage").html(str);
+    });
+        var scntDiv = $('#skilltable');
+        var i = $('#skilltable tbody tr').size() + 1;
+        
+        $('#addskillrow').on('click', function() {
+                $('<p><tr><td><input type="text" id=""></td><td><input type="checkbox" value="Interviewed in person" name="interview_method[]"></td><td><input type="checkbox" value="Interviewed in person" name="interview_method[]"></td><td><select><option>1</option><option>2</option></select></td><td><input type="text" id=""></td><td><a href="#" id="remScnt">Remove</a></td></tr></p>').appendTo(scntDiv);
+                i++;
+                return false;
+        });
+        
+        $('#remScnt').on('click', function() {
+        alert('ok'); 
+                if( i > 2 ) {
+                        $(this).parents('tr td').remove();
+                        i--;
+                }
+                return false;
+        });
+}); 
+  function showfield() {
+    if($('#allergies_check').is(':checked')) {
+    $('#allergies_text').show();
+    } else {  
+      $('#allergies_text').val('');
+      $('#allergies_text').hide();
+    }
+    if($('#die_restrictions_check').is(':checked')) {
+    $('#die_restrictions').show();
+    } else {  
+      $('#die_restrictions').val('');
+      $('#die_restrictions').hide();
+    }
+    if($('#phy_disabilities_check').is(':checked')) {
+    $('#phy_disabilities').show();
+    } else {  
+      $('#phy_disabilities').val('');
+      $('#phy_disabilities').hide();
+    }
+    if($('#food_handling_check').is(':checked')) {
+    $('#food_handling').show();
+    } else {  
+      $('#food_handling').val('');
+      $('#food_handling').hide();
+    }
+    if($('#med_desieses_other').is(':checked')) {
+    $('#med_desieses').show();
+    } else {  
+      $('#med_desieses').val('');
+      $('#med_desieses').hide();
+    }
+  }
+</script>
+<h3>Edit FDW Bio data</h3>
+<hr/>
+{!! Form::model($fdw, ['method' => 'PATCH', 'action' => ['FdwController@update', $fdw->id],'enctype'=>'multipart/form-data' ]) !!}
+<div id="tabs">
+    <ul>
+      <li><a href="#tabs-1"><strong>Part A.</strong> <span style="font-size:0.7em">PROFILE OF FDW</span></a></li>
+      <li><a href="#tabs-2"><strong>Part B.</strong> <span style="font-size:0.7em">SKILLS OF FDW</span></a></li>
+      <li><a href="#tabs-3"><strong>Part C.</strong> <span style="font-size:0.7em">EMPLOYMENT HISTORY OF THE FDW</span></a></li>  
+    </ul>
+
+<!--FDW Personal Form End-->    
+<div id="tabs-1">  
+    @include('errors.form_error')
+     <div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Name of FDW', 'Name of FDW:') !!}
+</div>
+<div class="col-xs-5">
+    {!! Form::text('name', null, ['class'=> 'form-control']) !!}
+</div>
+</div>
+
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Date of birth', 'Date of birth:') !!}
+    </div>
+    <div class="col-xs-5">
+  {!! Form::text('date_of_birth', null, ['class'=> 'form-control date_of_birth','placeholder'=>'yyyy-mm-dd']) !!}
+  </div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Place of birth', 'Place of birth:') !!}
+      </div>
+    <div class="col-xs-5">
+  {!! Form::select('place_of_birth', [''=>'Select place of birth'] + $countries,$fdw->place_of_birth, ['class' => 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Height', 'Height (cm):') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::text('height', null, ['class'=> 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Weight', 'Weight (kg):') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::text('weight', null, ['class'=> 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Nationality', 'Nationality:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::select('nationality', [''=>'Select nationality'] + $nationality,$fdw->nationality, ['class' => 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Address', 'Address:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::text('address', null, ['class'=> 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Name of port/airport', 'Name of port/airport:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::text('port_name', null, ['class'=> 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Contact number', 'Contact number:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::text('contact_number', null, ['class'=> 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Religion', 'Religion:') !!}
+      </div>
+    <div class="col-xs-5">
+     {!! Form::select('religion', array('0' => 'Select religion', 
+    'Hindu' => 'Hindu', 'Muslim' => 'Muslim'), Input::old('religion'),
+    array('class' => 'form-control')) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Education level', 'Education level:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::select('education_level', [''=>'Select education level'] + $education_levels, $fdw->title, ['class' => 'form-control']) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('No. of siblings', 'No. of siblings:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::select('no_of_siblings', array('' => 'Select number of siblings', 
+    '1' => '1', '2' => '2','3' => '3', '4' => '4','5' => '5', '6' => '6','7' => '7', '8' => '8'), Input::old('religion'),
+    array('class' => 'form-control')) !!}
+</div>
+</div>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Marital status', 'Marital status:') !!}
+      </div>
+    <div class="col-xs-5">
+     <label class="radio-inline"> {!! Form::radio('marital_status', 'Married', true) !!} Married</label>
+    <label class="radio-inline">{!! Form::radio('marital_status', 'Un-married') !!} Un-married </label>
+    <label class="radio-inline">{!! Form::radio('marital_status', 'Widow') !!} Widow </label>
+    
+</div>
+</div>
+</br>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('No. of children', 'No. of children:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::select('no_of_children', array('' => 'Select number of childrens', 
+    '1' => '1', '2' => '2','3' => '3', '4' => '4','5' => '5', '6' => '6','7' => '7', '8' => '8'), Input::old('religion'),
+    array('class' => 'form-control','id'=>'no_of_children')) !!}
+</div>
+</div>
+
+<div id='appendchildage'>
+<?php $childage =  explode(',', $fdw->children_age);
+ foreach ($childage as $key => $value) {?>
+   <div class="row">
+<div class="small-2 columns">
+    <label for="Children age">Children age <?php echo $key+1; ?>:</label>
+      </div>
+    <div class="col-xs-5">
+    {!! Form::text('children_age[]', $value, ['class'=> 'form-control']) !!}
+</div>
+</div>
+ <?php }
+ ?>
+</div>
+
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Profile image', 'Profile image:') !!}
+      </div>
+    <div class="col-xs-5">
+      <div style="width:50%;float:left;">
+      {!! Form::file('image') !!}
+
+      </div>
+      @if($fdw->image)
+    <div style="float:right"><img src="{{ asset('uploads/maid_image/'.$fdw->image) }}" title="FDW Image"   height="50px" width="100px"/></div>
+    @else
+    <div></div>
+    @endif
+  </div>
+</div>
+
+ 
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Allergies ( if any)', 'Allergies ( if any):') !!}
+      </div>
+    <div class="col-xs-5">
+      @if($fdw->allergies == 'Yes')
+    <input type="checkbox" value="Yes" name="allergies" checked="checked" onchange="showfield()" id="allergies_check">
+    @else
+    <input type="checkbox" value="Yes" name="allergies" onchange="showfield()" id="allergies_check">
+    @endif
+    {!! Form::text('allergy_description', null, ['class'=> 'form-control','id'=>'allergies_text']) !!}
+</div>
+</div>
+
+<div class="row">
+<div class="small-10 columns">
+<p>Past and existing illness ( including chronic ailments and illnesses requiring medication ):</p>
+ </div>
+  </div>
+      <?php $count = 0; 
+      echo "<div class='row'>"; 
+      ?>
+      <!-- collecting disease in array according to maid -->
+      @if($maid_disease)
+      @foreach ($maid_disease as $diseaseid => $diseasevalue)
+       <?php 
+        //print_r($maid_disease[0]); exit;
+            $maiddisease[]=$diseasevalue->medical_desieses_id; 
+        ?>
+      @endforeach
+      @else
+        <?php $maiddisease[]='test'; ?>
+      @endif
+      <!-- end -->
+      @foreach ($medical_desieses as $id => $title)
+        <?php $count++; 
+        if($count == 4){
+            echo "</div>"; 
+            echo "<div class='row'>";  
+            $count=1;
+            }
+        ?>
+      <div class="col-xs-3">
+        <label class="checkbox-inline">
+          @if(in_array($id, $maiddisease))
+              <input type="checkbox" value="<?php echo $id; ?>" name="medical_desieses_id[]" checked="checked">
+              {{ $title }}
+          @else
+          <input type="checkbox" value="<?php echo $id; ?>" name="medical_desieses_id[]">
+              {{ $title }}
+          @endif    
+        </label>
+      </div>
+        <?php 
+          if($count == 4){  
+            $count=1;
+            }
+        ?>   
+      @endforeach
+      </br>
+    <div class="col-xs-5"><label class="checkbox-inline"> 
+      @if(in_array('Others', $maiddisease))
+          <input type="checkbox" value="Others" name="medical_desieses_id[]" onchange="showfield()" id="med_desieses_other" checked="checked">Others (if any)
+      @else
+         <input type="checkbox" value="Others" name="medical_desieses_id[]" onchange="showfield()" id="med_desieses_other">Others (if any)
+      @endif  
+    </label>@foreach ($maid_disease as $diseaseid => $diseasevalue)
+       <?php if($diseasevalue->medical_desieses_id=='Others'){ ?>{!! Form::text('description', $diseasevalue->description, ['class'=> 'form-control','id'=>'med_desieses']) !!}
+        <?php } ?>
+      @endforeach</div>
+</div>
+</br>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Physical disabilities', 'Physical disabilities:') !!}
+      </div>
+    <div class="col-xs-5">
+    @if($fdw->physical_disablity == 'Yes')
+    <input type="checkbox" value="Yes" name="physical_disablity" checked="checked" onchange="showfield()" id="phy_disabilities_check">
+    @else
+    <input type="checkbox" value="Yes" name="physical_disablity" onchange="showfield()" id="phy_disabilities_check">
+    @endif 
+    {!! Form::text('physical_disability_description', null, ['class'=> 'form-control','id'=>'phy_disabilities']) !!}
+</div>
+</div>
+
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Dietary restrictions', 'Dietary restrictions:') !!}
+      </div>
+    <div class="col-xs-5">
+     @if($fdw->dietary_restrictions == 'Yes')
+    <input type="checkbox" value="Yes" name="dietary_restrictions" checked="checked" onchange="showfield()" id="die_restrictions_check">
+    @else
+    <input type="checkbox" value="Yes" name="dietary_restrictions" onchange="showfield()" id="die_restrictions_check">
+    @endif
+    {!! Form::text('dietary_restrictions_description', null, ['class'=> 'form-control','id'=>'die_restrictions']) !!}
+</div>
+</div>
+
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Food handling preferences', 'Food handling preferences:') !!}
+      </div>
+    <div class="col-xs-5">
+    <label class="checkbox-inline"> 
+    <?php $foodhandling = explode(',', $fdw->food_handling_prefrences); ?>
+    @if(in_array('Pork',$foodhandling))
+    <input type="checkbox" value="Pork" name="food_handling_prefrences[]" checked="checked"> Pork
+    @else
+    <input type="checkbox" value="Pork" name="food_handling_prefrences[]"> Pork
+    @endif
+    </label>
+
+    <label class="checkbox-inline"> 
+    @if(in_array('Beef',$foodhandling))
+    <input type="checkbox" value="Beef" name="food_handling_prefrences[]" checked="checked"> Beef
+    @else
+    <input type="checkbox" value="Beef" name="food_handling_prefrences[]"> Beef
+    @endif
+    </label>
+    <label class="checkbox-inline"> 
+    @if(in_array('Others',$foodhandling))
+    <input type="checkbox" value="Others" name="food_handling_prefrences[]" checked="checked" onchange="showfield()" id="food_handling_check"> Others (if any)
+    @else
+    <input type="checkbox" value="Others" name="food_handling_prefrences[]" onchange="showfield()" id="food_handling_check"> Others (if any)
+    @endif
+    </label>
+  {!! Form::text('food_handling_preference_other', null, ['class'=> 'form-control','id'=>'food_handling']) !!}
+</div>
+</div>
+</br>
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Preference for rest day', 'Preference for rest day:') !!}
+      </div>
+    <div class="col-xs-5">
+     {!! Form::select('rest_days_preference', array('' => 'Select rest day(s) per month ', 
+    '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'), Input::old('rest_days_preference'),
+    array('class' => 'form-control')) !!}
+</div>
+</div>
+
+<div class="row">
+<div class="small-2 columns">
+    {!! Form::label('Any other remarks', 'Any other remarks:') !!}
+      </div>
+    <div class="col-xs-5">
+    {!! Form::text('medication_remarks', null, ['class'=> 'form-control']) !!}
+</div>
+</div>
+
+<div class="row">
+<div class="small-10 small-offset-2 columns">
+    {!! Form::submit('Submit', array('class' => 'button small')) !!}
+    {!! Form::reset('Reset', array('class' => 'button small')) !!}
+    <button onclick="window.location='{{ url("fdws") }}'" class="button small" type="button" id="cancel" name="cancel">Go To List</button>
+</div>
+</div>
+
+ </div>
+
+ <!--FDW Personal Form End-->
+ <!-- FDW Skill Form Start -->
+<div id="tabs-2">
+  <div class="row">
+    <div class="small-2 columns">
+      {!! Form::label('Interviewed By', 'Interviewed By:') !!}
+    </div>
+    <div class="col-xs-5">
+      <label class="radio-inline"> {!! Form::radio('interviewed_by', 'Singapore EA', true) !!} Singapore EA</label>
+      <label class="radio-inline">{!! Form::radio('interviewed_by', 'Overseas Training Centre') !!} Overseas Training Centre </label>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="small-2 columns">
+      {!! Form::label('Interview Method', 'Interview Method:') !!}
+    </div>
+    <div class="col-xs-5">
+      <div class="row">
+        <label class="checkbox-inline" id=""> 
+          <?php $interview_method = explode(';', $fdw->interview_method); ?>
+          @if(in_array('Interviewed via telephone / teleconference',$interview_method))
+            <input type="checkbox" value="Interviewed via telephone / teleconference" name="interview_method[]" checked="checked"> Interviewed via telephone / teleconference
+          @else
+            <input type="checkbox" value="Interviewed via telephone / teleconference" name="interview_method[]"> Interviewed via telephone / teleconference
+          @endif
+        </label>
+      </div>
+      <div class="row">
+        <label class="checkbox-inline"> 
+          @if(in_array('Interviewed via videoconference',$interview_method))
+            <input type="checkbox" value="Interviewed via videoconference" name="interview_method[]" checked="checked"> Interviewed via videoconference
+          @else
+            <input type="checkbox" value="Interviewed via videoconference" name="interview_method[]"> Interviewed via videoconference
+          @endif
+        </label>
+      </div>
+      <div class="row">
+        <label class="checkbox-inline"> 
+          @if(in_array('Interviewed in person',$interview_method))
+            <input type="checkbox" value="Interviewed in person" name="interview_method[]" checked="checked" onchange="showfield()" id="food_handling_check"> Interviewed in person
+          @else
+            <input type="checkbox" value="Interviewed in person" name="interview_method[]" onchange="showfield()" id="food_handling_check"> Interviewed in person
+          @endif
+        </label>
+      </div>
+      <div class="row">
+        <label class="checkbox-inline"> 
+          @if(in_array('Interviewed in person and also made observation of FDW in the areas of work',$interview_method))
+            <input type="checkbox" value="Interviewed in person and also made observation of FDW in the areas of work" name="interview_method[]" checked="checked" > Interviewed in person and also made observation of FDW in the areas of work
+          @else
+            <input type="checkbox" value="Interviewed in person and also made observation of FDW in the areas of work" name="interview_method[]" > Interviewed in person and also made observation of FDW in the areas of work
+          @endif
+        </label>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="small-2 columns" id="">
+      {!! Form::label('Skill', 'Skill:') !!}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="skilltable">
+          <thead>
+            <tr id='addr0'>
+              <th style="width:30%">Areas of Work</th>
+              <th style="width:15%">Willingness</th>
+              <th style="width:15%">Experience</th>
+              <th style="width:10%">Assessment / Observation</th>
+              <th style="width:30%">Comment</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php $radiocounter = 0; ?>
+          @if($skillset)
+          @foreach ($skillset as $skillid => $skillvalue)
+            <tr>
+              <td>{!! Form::select("work_area_id[]", [""=>"Select work area"] + $workarea, $skillvalue->work_area_id, ["class" => "form-control workareaselect","onchange"=>"validateworkarea()", "id"=>"work_area_id_$radiocounter"]) !!}</td>
+              <td><label class="radio-inline"><input type="radio" value="Yes" name="willingness[<?php echo $radiocounter;?>]" <?php if($skillvalue->willingness == 'Yes'){echo 'checked="checked"';} ?>> Yes</label>
+            <label class="radio-inline"><input type="radio" value="No" name="willingness[<?php echo $radiocounter;?>]" <?php if($skillvalue->willingness == 'No'){echo 'checked="checked"';} ?>> No </label></td>
+              <td><label class="radio-inline"> <input type="radio" value="Yes" name="experience[<?php echo $radiocounter;?>]"<?php if($skillvalue->experience == 'Yes'){echo 'checked="checked"';} ?>> Yes</label>
+            <label class="radio-inline"><input type="radio" value="No" name="experience[<?php echo $radiocounter;?>]"<?php if($skillvalue->experience == 'No'){echo 'checked="checked"';} ?>> No </label></td>
+              <td>{!! Form::selectRange("rating[]", 1, 5, $skillvalue->rating, ["class" => "form-control"]) !!}</td>
+              <td>{!! Form::text("feedback_comment[]", $skillvalue->feedback_comment, ["class"=> "form-control"]) !!}</td>
+            </tr>
+            <?php $radiocounter++; ?>
+            @endforeach
+            @else
+            <tr>
+              <td>{!! Form::select("work_area_id[]", [""=>"Select work area"] + $workarea, null, ["class" => "form-control workareaselect","onchange"=>"validateworkarea()"]) !!}</td>
+              <td><label class="radio-inline"><input type="radio" value="Yes" name="willingness[<?php echo $radiocounter;?>]" checked="checked"> Yes</label>
+            <label class="radio-inline"><input type="radio" value="No" name="willingness[<?php echo $radiocounter;?>]" > No </label></td>
+              <td><label class="radio-inline"> <input type="radio" value="Yes" name="experience[<?php echo $radiocounter;?>]"checked="checked" > Yes</label>
+            <label class="radio-inline"><input type="radio" value="No" name="experience[<?php echo $radiocounter;?>]"> No </label></td>
+              <td>{!! Form::selectRange("rating[]", 1, 5, null, ["class" => "form-control"]) !!}</td>
+              <td>{!! Form::text("feedback_comment[]", null, ["class"=> "form-control"]) !!}</td>
+            </tr>
+            @endif
+            <tr id='addr1'></tr>
+          </tbody>
+        </table>
+        <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+  </div>
+  </div>
+  <input type="hidden" id="maidskillcount" name="skillcount" value="<?php echo count($skillset); ?>">
+  <input type="hidden" id="skillcount" name="skillcount" value="<?php echo count($workarea); ?>">
+<div style="margin-top:20px;"class="row">
+<div class="small-10 small-offset-2 columns">
+    {!! Form::submit('Submit', array('class' => 'button small')) !!}
+    {!! Form::reset('Reset', array('class' => 'button small')) !!}
+    <button onclick="window.location='{{ url("fdws") }}'" class="button small" type="button" id="cancel" name="cancel">Go To List</button>
+</div>
+</div>
+</div>
+  <!-- FDW Skill Form End -->
+  <!-- FDW History Form Start -->
+<div id="tabs-3">
+  <div class="row" style="max-width: 100%;">
+    <div class="small-2 columns" id="">
+      {!! Form::label('Employment History Overseas', 'Employment History Overseas:') !!}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="historytable">
+          <thead>
+            <tr id='addrhistory0'>
+              <th colspan="2" style="width:20%"><div class="col-xs-6">Date From</div><div class="col-xs-6"> Date To</div></th>
+              <th style="width:15%">Country</th>
+              <th style="width:15%">Employer</th>
+              <th style="width:20%">Work duties</th>
+              <th style="width:15%">Remarks</th>
+              <th style="width:15%">Feedback</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>{!! Form::text("date_from[]", null, ["class"=> "form-control"]) !!}</td>
+              	<td>{!! Form::text("date_to[]", null, ["class"=> "form-control"]) !!}</td>
+                <td>{!! Form::select("country[]", [""=>"Select country"]  + $countries, null, ["class" => "form-control workareaselect"]) !!}</td>
+                <td>{!! Form::text("employer[]", null, ["class"=> "form-control"]) !!}</td>
+                <td>{!! Form::select("work_area_id[]", [""=>"Select work area"] + $workarea, null, ["class" => "form-control workareaselect","multiple"=>"true"]) !!}</td>
+                <td>{!! Form::text("employment_remarks[]", null, ["class"=> "form-control"]) !!}</td>
+                <td>{!! Form::text("employer_feedback[]", null, ["class"=> "form-control"]) !!}</td>
+            </tr>
+            <tr id='addrhistory1'></tr>
+          </tbody>
+        </table>
+        <a id="add_row_history" class="btn btn-default pull-left">Add Row</a><a id='delete_row_history' class="pull-right btn btn-default">Delete Row</a>
+  </div>
+  </div>
+   <div class="row">
+    <div class="small-2 columns">
+      {!! Form::label('Previous working experience in Singapore   ', 'Previous working experience in Singapore   :') !!}
+    </div>
+    <div class="col-xs-5">
+     	<label class="radio-inline"><input type="radio" value="Yes" name="willingness[<?php echo $radiocounter;?>]" checked="checked"> Yes</label>
+      	<label class="radio-inline"><input type="radio" value="No" name="willingness[<?php echo $radiocounter;?>]" > No </label>
+    </div>
+  </div>
+  <div style="margin-top:20px;"class="row">
+  <div class="small-10 small-offset-2 columns">
+      {!! Form::submit('Submit', array('class' => 'button small')) !!}
+      {!! Form::reset('Reset', array('class' => 'button small')) !!}
+      <button onclick="window.location='{{ url("fdws") }}'" class="button small" type="button" id="cancel" name="cancel">Go To List</button>
+  </div>
+  </div>
+</div>
+ <!-- FDW History Form End -->
+ </div>
+{!! Form::close() !!}
+<script type="text/javascript">
+//function validateworkarea(){
+//alert($('.workareaselect').val());
+//}
+    $(document).ready(function(){
+     // This Section is used for skill add delete
+     var i=1;
+      var countmaidskilrow = $('#maidskillcount').val();
+      var countskilrow = $('#skillcount').val();
+
+      if(countmaidskilrow !='')
+      {
+        var j=parseInt(countmaidskilrow -1); 
+      }else{
+        var j=0;
+      }
+      //alert(j);
+      
+     $("#add_row").click(function(){
+     	var selectid = 'work_area_id_'+j;
+     	alert(selectid);
+      if(j+2>countskilrow){
+          alert('You have maximum no. of work area selection');
+          return false;
+      }else{
+        $('#addr'+i).html('<td>{!! Form::select("work_area_id[]", [""=>"Select work area"] + $workarea, null, ["class" => "form-control workareaselect","onchange"=>"validateworkarea()","id"=>"test'+i+'"]) !!}</td><td><label class="radio-inline"> <input type="radio" value="Yes" name="willingness['+(j+1)+']" checked="checked" > Yes</label><label class="radio-inline"><input type="radio" value="No" name="willingness['+(j+1)+']" > No </label></td><td><label class="radio-inline"> <input type="radio" value="Yes" name="experience['+(j+1)+']" checked="checked"> Yes</label><label class="radio-inline"><input type="radio" value="No" name="experience['+(j+1)+']"> No </label></td><td>{!! Form::selectRange("rating[]", 1, 5, null, ["class" => "form-control"]) !!}</td><td>{!! Form::text("feedback_comment[]", null, ["class"=> "form-control"]) !!}</td>');
+
+        $('#skilltable').append('<tr id="addr'+(i+1)+'"></tr>');
+        i++; 
+        j++;
+      }
+    });
+     $("#delete_row").click(function(){
+       if(i>1){
+         $("#addr"+(i-1)).html('');
+         i--;
+         j--;
+       }
+    });
+     // This section is used for history pannel add delete row
+      var k=1;
+     $("#add_row_history").click(function(){
+     // if(l+2>countskilrow){
+          //alert('You have maximum no. of work area selection');
+         // return false;
+     // }else{
+        $('#addrhistory'+k).html('<td>{!! Form::text("date_from[]", null, ["class"=> "form-control"]) !!}</td><td>{!! Form::text("date_to[]", null, ["class"=> "form-control"]) !!}</td><td>{!! Form::select("country[]", [""=>"Select country"] + $countries, null, ["class" => "form-control workareaselect"]) !!}</td><td>{!! Form::text("employer[]", null, ["class"=> "form-control"]) !!}</td><td>{!! Form::select("work_area_id[]", [""=>"Select work area"] + $workarea, null, ["class" => "form-control workareaselect","multiple"=>"true"]) !!}</td><td>{!! Form::text("employment_remarks[]", null, ["class"=> "form-control"]) !!}</td><td>{!! Form::text("employer_feedback[]", null, ["class"=> "form-control"]) !!}</td>');
+
+        $('#historytable').append('<tr id="addrhistory'+(k+1)+'"></tr>');
+        k++; 
+      //}
+    });
+     $("#delete_row_history").click(function(){
+       if(k>1){
+         $("#addrhistory"+(k-1)).html('');
+         k--;
+       }
+    });
+
+});
+</script>
+@stop

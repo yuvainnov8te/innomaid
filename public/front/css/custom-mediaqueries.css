@@ -1,0 +1,360 @@
+ @media only screen and (min-width : 1320px) and (max-width : 1900px) {
+.maid-heading {
+	border-bottom: 1px solid #ebebeb;
+	color: #ee0734;
+	font-size: 22px;
+	margin: 8px 2px 7px;
+	padding: 2px;
+}
+.maid-heading1 {
+	color: #000;
+	font-size: 22px;
+	font-weight: 600;
+	margin: 0;
+	padding: 0 0 6px;
+}
+.maid-heading2 {
+	color: #000;
+	/*font-size: 18px;*/font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+	padding-bottom: 0;
+	padding-right: 0;
+	padding-top: 6px;
+}
+.profile_agency {
+	color: #337ab7;
+	font-size: /*12px;*/10.5px;
+	letter-spacing: 0.5px;
+	text-transform: capitalize;
+}
+.maid-table {
+	/*font-size: 18px;*/font-size: 16px;
+	line-height: 28px;
+}
+.maid-info {
+	/*font-size: 18px;*/font-size: 16px;
+	text-align: right;
+}
+.themes-blue {
+	color: #31708f;
+	padding-left: 12px;
+}
+.green-heading {
+	background-color: #02ad8b;
+	color: #fff;
+	/*font-size: 18px;*/font-size: 16px;
+}
+.mygred-menu-block .os_menu li a {
+	font-size: 16px;
+	line-height: 30px;/**36**/
+}
+.side-bar-text li a {
+	color: #595858 !important;
+	font-size: /*14px*/13.5px !important;
+	line-height: 26px !important;
+}
+.table-skill td {
+	border: medium none !important;
+	font-family: open sans;
+	/*font-size: 18px;*/font-size: 16px;
+	font-weight: 600;
+	color: #424242;
+}
+.other-info .list-unstyled {
+	/*font-size: 18px;*/font-size: 16px;
+	line-height: 30px;
+}
+.other-info ul li span {
+	padding-left: 15px;
+}
+.btn1 {
+	font-size: 14px;/*width:318px;*/
+}
+.maid-heading2 {
+	/*font-size: 18px;*/font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+}
+.ad-info {
+	font-size: 14px;
+	padding-top: 0;
+}
+.box-ribon span {
+	font-size: 17.48px !important;/*font-size: 20px !important;*/
+}
+.box-ribon a {
+	font-size: /*16px*/14.25px !important;
+	font-weight: 600;
+}
+.elipses {
+	font-weight: 600;
+	font-size: 16px;
+}
+.list-group-item-text {
+	/*font-size: 15px;*/font-size: 13.25px;
+	font-weight: 600;
+	padding: 4px;
+}
+.custom-box .caption p.agency-name {
+	font-size: 13px;
+}
+.caption img {
+	width: 100px;
+}
+}
+/*==========  Non-Mobile First Method  ==========*/
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1024px) {
+.image-maid {
+	background-size: 71%;
+	margin-left: 0px;
+}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+#top-fix {
+	background-color: unset;
+	max-width: 100%;
+	padding-bottom: 0;
+	position: unset;
+	width: auto;
+	z-index: 99;
+}
+.banner-fix {
+	background-color: #f0f3f5;
+	margin-top: 10px;
+	max-width: 100%;
+	position: unset;
+	width: 100%;
+	z-index: 9;
+}
+.fix-data {
+	margin-top: 12px;
+}
+}
+/* Small Devices, Tablets . Added By : Neha Pareek. Dated :07-11-2015*/
+@media only screen and (min-width : 767px) and (max-width : 991px) {
+.header-banner1 .form-box {
+	margin: 0px auto;
+}
+.header-banner1 {
+	/*padding-top : 15px; 
+	padding-bottom : 15px;*/
+	margin-right: 0px;
+}
+.image-maid {
+	background-size: 71%;
+}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+.row-offcanvas-left .sidebar-offcanvas {
+	left: -68%;
+}
+.row-offcanvas-left.active {
+	left: 65%;
+}
+.sidebar-offcanvas {
+	width: 65%;
+	height: 100%;
+	margin-top: -20px;
+}
+.row-offcanvas-left .sidebar-offcanvas .offCanvasTrick {
+	display: none;
+}
+.row-offcanvas-left.active .offCanvasTrick {
+	display: block;
+	height: 100%;
+	width: 60%;
+	position: inherit;
+	top: 0;
+	left: 100%;
+}
+.row-offcanvas-left #sidebar {
+	text-align: left;
+}
+#sidebar a.list-group-item {
+	color: #9D9D9D;
+	background-color: transparent;
+	border-color: #333;
+}
+#sidebar div.nav-container {
+	background-color: #222;
+}
+#sidebar a.list-group-item.active, #sidebar a.list-group-item:hover, #sidebar a.list-group-item:focus {
+	color: #FFF;
+}
+#sidebar a.list-group-item.active {
+	background-color: #080808;
+}
+.mygred-menu-block .os_menu ul {
+	margin: 0 0 5px;
+}
+.mygred-menu-block .divider {
+	margin-bottom: 5px;
+}
+.navi-left {
+	position: absolute;
+}
+p {
+	padding: 0 5px;
+}
+.header-banner1 {
+	background-image: none;
+	margin-top: auto;
+	margin-right: auto;
+}
+.image-maid {
+	background-image: none;
+}
+.form-box .form-horizontal .control-label {
+	padding-left: 15px;
+}
+.padding-none {
+	padding: 0;
+}/**css for responsive btn padding**/
+.custom-btn-primary {
+	padding: 0;
+}
+}
+/* Small Devices, Tablets.  Added By : Neha Pareek. Dated : 06-11-2015*/
+@media only screen and (min-width : 520px) and (max-width : 768px) {
+.header-banner1 .form-box {
+	margin: 0px auto;
+}
+}
+ @media only screen and (max-width : 600px) {
+.form-box {
+	max-width: 100%;
+}
+.select_style {
+	width: 90%;
+}
+.in_rightbar {
+	padding-left: 0;
+	padding-right: 0;
+}
+.form-box .form-horizontal .control-label {
+	padding-left: 25px;
+}
+.std-margin {
+	margin-top: auto;
+}
+.profile_agency {
+	color: #337ab7;
+	font-size: 13px;
+	letter-spacing: 0.5px;
+	padding-bottom: 10px;
+	padding-top: 0;
+	text-transform: capitalize;
+}
+.btn-info, .btn-warning {
+	margin: 5px;
+}
+.maid-heading2 {
+	clear: both;
+}
+.ad-info {
+	font-size: 100%;
+	padding-top: 0;
+}
+.image-maid {
+	width: 90%;
+}
+.pull-left.list-height {
+	float: right !important;
+	margin: 13px auto 0;
+	max-width: 480px;
+	text-align: center;
+	width: 100%;
+}
+.side-bar-text li a {
+  color: #595858 !important;
+  font-size: 13.5px !important;
+}
+.footer {
+	display: none;
+}
+}
+/*added by Neha Pareek. dated : 07-11-2015 */
+@media only screen and (max-width : 480px) {
+.form-box {
+	max-width: 100%;
+}
+.select_style {
+	width: 90%;
+}
+.in_rightbar {
+	padding-left: 0;
+	padding-right: 0;
+}
+.form-box .form-horizontal .control-label {
+	padding-left: 25px;
+}
+.std-margin {
+	margin-top: auto;
+}
+.profile_agency {
+	color: #337ab7;
+	font-size: 13px;
+	letter-spacing: 0.5px;
+	padding-bottom: 10px;
+	padding-top: 0;
+	text-transform: capitalize;
+}
+.btn-info, .btn-warning {
+	margin: 5px;
+}
+.maid-heading2 {
+	clear: both;
+}
+.ad-info {
+	font-size: 100%;
+	padding-top: 0;
+}
+.image-maid {
+	width: 90%;
+}
+.pull-left.list-height {
+	float: right !important;
+	margin: 13px auto 0;
+	max-width: 480px;
+	text-align: center;
+	width: 100%;
+}
+.xs-height {
+	float: right !important;
+	margin: 0 auto;
+	max-width: 480px;
+	text-align: center;
+	width: 100%;
+}
+.pull-none {
+	float: none !important;
+}
+.footer {
+	display: none;
+}
+}
+
+/*added by Neha Pareek. dated : 07-11-2015 */
+@media only screen and (max-width : 360px) {
+.row {
+	padding-right: 0px;
+}
+.row-offcanvas.row-offcanvas-left.active .sidebar-offcanvas {
+	height : 100%;
+	width : 100%;/*top : 24%;
+		margin-left: 25px;*/
+}
+#btnclose {
+	display: block;
+	margin-top: 21px;
+}
+.row {
+	padding-right: 0px;
+}
+}

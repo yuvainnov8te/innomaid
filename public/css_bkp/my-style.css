@@ -1,0 +1,53 @@
+/*My style
+Developer Harendar singh tomar
+*/
+.col-md-2{
+	padding-left:0px !important;
+}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+	font-size: 0.8em !important;
+}
+.hd{
+	width:60%; 
+	float:left;
+}
+.adddnewdiv{
+	width:30%; 
+	float:right;
+}
+.adddnewp{
+	text-align:right;
+	padding:2%;
+}
+.mandatory{
+	color: red;
+}
+.error{
+	background: white !important;
+	color:red !important;
+	margin-top :0px !important;
+}
+.small-width18{
+	width:18%;
+}
+.notbold{
+	font-weight: normal;
+}
+.row{
+	max-width: 94% !important;
+}
+#annual_house_hold_income{
+	width:30%;
+}
+#replacement_month{
+	width:7%;
+}
+.table input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea {
+    margin: 0px !important;
+}
+.placementradiotext{
+	width:30% !important; 
+}
+#servicetable tbody tr td{
+	 vertical-align: bottom;
+}
